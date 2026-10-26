@@ -1,0 +1,249 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Instrument Serif", Georgia, serif;
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-sans: "Albert Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --color-base: #2B1518;
+  --color-base-dark: #1C0D0F;
+  --color-base-hover: #3F2024;
+  --color-base-100: #FFFFFF;
+  --color-base-200: #FAF7F2;
+  --color-base-content: #2B1518;
+  --color-accent: #B08D57;
+  --color-accent-light: #C8AC7C;
+  --color-accent-dark: #926E38;
+  --color-neutral: #E8DCC8;
+  --color-neutral-light: #F7F3EB;
+  --color-neutral-dark: #D8C7AC;
+  --color-ink: #2B1518;
+}
+
+@property --aura-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes aura-spin {
+  0% {
+    --aura-angle: 0deg;
+  }
+  100% {
+    --aura-angle: 360deg;
+  }
+}
+
+/* Aura Glow Effect Container */
+.aura {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 1.25rem;
+  padding: 2.5px;
+  background-image: conic-gradient(
+    from var(--aura-angle, 0deg) at 50% 50%,
+    currentColor 0%,
+    color-mix(in srgb, currentColor 80%, transparent) 25%,
+    transparent 50%,
+    color-mix(in srgb, currentColor 65%, transparent) 75%,
+    currentColor 100%
+  );
+  animation: aura-spin 7s linear infinite;
+  isolation: isolate;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+/* Ambient blurred aura light halo */
+.aura::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: inherit;
+  background-color: inherit;
+  filter: blur(12px);
+  opacity: 0.55;
+  z-index: -1;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+  pointer-events: none;
+}
+
+.aura:hover::before {
+  opacity: 0.9;
+  filter: blur(20px);
+}
+
+.aura:hover {
+  box-shadow: 0 12px 30px -8px rgba(176, 141, 87, 0.25);
+}
+
+/* DaisyUI Card Component Compatibility */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: calc(1.25rem - 2.5px);
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-base-100, #FFFFFF);
+  color: var(--color-base-content, #2B1518);
+}
+
+.card.card-side {
+  flex-direction: row;
+}
+
+@media (min-width: 1024px) {
+  .card.lg\:card-side {
+    flex-direction: row;
+  }
+}
+
+.card figure {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  .card.lg\:card-side > figure {
+    width: 44%;
+    flex-shrink: 0;
+    align-self: stretch;
+  }
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  padding: 1.25rem;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.card-actions.justify-end {
+  justify-content: flex-end;
+}
+
+/* DaisyUI Footer Component Compatibility */
+.footer {
+  display: grid;
+  width: 100%;
+  grid-auto-flow: row;
+  place-items: start;
+  column-gap: 2rem;
+  row-gap: 2.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.footer > * {
+  display: grid;
+  place-items: start;
+  gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .footer.sm\:footer-horizontal,
+  .sm\:footer-horizontal.footer {
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+  }
+}
+
+.footer-title {
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.75rem;
+  color: #B08D57;
+}
+
+.link {
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.15s ease-in-out, opacity 0.15s ease-in-out;
+}
+
+.link-hover:hover {
+  text-decoration: underline;
+}
+
+/* Footer Theming */
+footer.bg-base-200,
+.footer.bg-base-200,
+div.bg-base-200 {
+  background-color: #241114;
+  color: #E8DCC8;
+}
+
+footer.border-base-300,
+.footer.border-base-300,
+.border-base-300 {
+  border-color: rgba(176, 141, 87, 0.25);
+}
+
+.footer .link {
+  color: rgba(232, 220, 200, 0.82);
+}
+
+.footer .link:hover {
+  color: #FFFFFF;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #F7F3EB;
+  color: #2B1518;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+h1, h2, h3, .font-serif, .font-display {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.font-editorial-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Custom scrollbars matching the luxury palette */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F7F3EB;
+}
+::-webkit-scrollbar-thumb {
+  background: #D8C7AC;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B08D57;
+}

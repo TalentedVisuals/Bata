@@ -1,0 +1,10 @@
+.aistudio
+.git
+.github
+node_modules
+dist
+coverage
+*.log
+.DS_Store
+.env.local
+.env.*.local

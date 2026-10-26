@@ -1,0 +1,6 @@
+{
+  "name": "Bàtà - Nigerian Handmade & Imported Footwear",
+  "description": "Quality handmade leather shoes crafted in Nigeria and premium imported footwear. Order directly on WhatsApp with fast nationwide delivery.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
